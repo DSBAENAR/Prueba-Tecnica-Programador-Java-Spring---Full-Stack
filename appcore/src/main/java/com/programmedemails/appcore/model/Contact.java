@@ -1,3 +1,8 @@
+package com.programmedemails.appcore.model;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "contact")
 public class Contact {
     private String name;
     private String email;
