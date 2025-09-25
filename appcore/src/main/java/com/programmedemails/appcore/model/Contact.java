@@ -4,24 +4,25 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "contact")
 public class Contact {
-    private String name;
+    private String firstname;
     private String email;
     private String gender;
     private String direction;
+    private String lastname;
 
-    public Contact(String name, String email, String gender, String direction) {
-        this.name = name;
+    public Contact(String firstname, String lastname , String email, String gender, String direction) {
+        this.firstname = firstname;
         this.email = email;
         this.gender = gender;
         this.direction = direction;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getEmail() {
@@ -47,6 +48,16 @@ public class Contact {
     public void setDirection(String direction) {
         this.direction = direction;
     }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    
 
     
     
