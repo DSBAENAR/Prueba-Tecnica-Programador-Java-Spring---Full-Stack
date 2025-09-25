@@ -8,6 +8,8 @@ import com.mailersend.sdk.emails.Email;
 import com.mailersend.sdk.exceptions.MailerSendException;
 import com.programmedemails.appcore.model.Contact;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 
 public class MailService {
     private final Contact contact;
@@ -29,7 +31,7 @@ public class MailService {
         email.setSubject("Subject:");
         email.setHtml("<p>Mensaje de prueba</p>");
 
-        ms.setToken("mlsn.1d2e5833287778c3ac0b6eafe078719296dd743bdcf0477e996fe9a16ab03d4d");
+        ms.setToken(Dotenv.load().get("API_KEY"));
 
         try {    
         MailerSendResponse response = ms.emails().send(email);
