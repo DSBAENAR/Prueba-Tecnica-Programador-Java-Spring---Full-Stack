@@ -14,15 +14,21 @@ public class MailService {
         this.mailSender = mailSender;
     }
 
-    public String sendEmail(String to, String subject, String body) throws MailSendException{
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(to);
-        msg.setSubject(subject);
-        msg.setText(body);
-        msg.setFrom("dsbanaenar.com");
-        mailSender.send(msg);
+    public String sendEmail(String to, String subject, String body) throws MailException{
 
-        return "Mail sent succesfully";
+            SimpleMailMessage msg = new SimpleMailMessage();
+            msg.setTo(to);
+            
+            msg.setSubject(subject);
+
+            msg.setText(body);
+
+            msg.setFrom("dsbanaenar.com");
+
+            mailSender.send(msg);
+            
+            return "Mail sent succesfully";
+
 
     }
 
