@@ -10,12 +10,15 @@ public class Contact {
     private String direction;
     private String lastname;
 
+    
     public Contact(String firstname, String lastname , String email, String gender, String direction) {
         this.firstname = firstname;
         this.email = email;
         this.gender = gender;
         this.direction = direction;
     }
+
+    public Contact(){}
 
     public String getFirstName() {
         return firstname;

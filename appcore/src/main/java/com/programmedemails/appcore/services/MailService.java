@@ -1,43 +1,29 @@
 package com.programmedemails.appcore.services;
 
-import java.util.List;
+import org.springframework.mail.MailException;
+import org.springframework.mail.MailSendException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
 
-import com.mailersend.sdk.MailerSend;
-import com.mailersend.sdk.MailerSendResponse;
-import com.mailersend.sdk.emails.Email;
-import com.mailersend.sdk.exceptions.MailerSendException;
-import com.programmedemails.appcore.model.Contact;
-
-import io.github.cdimascio.dotenv.Dotenv;
-
-
+@Service
 public class MailService {
-    private final Contact contact;
+    private final JavaMailSender mailSender;
 
-    public MailService(Contact contact) {
-        this.contact = contact;
+    public MailService(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
     }
 
-    public void sendEmail(String from, String emailFrom ,String to, List<Contact> contacts ){
-        Email email = new Email();
-        MailerSend ms = new MailerSend();
-        email.setFrom(from,emailFrom);
-        email.addRecipient(from, to);
+    public String sendEmail(String to, String subject, String body) throws MailSendException{
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(to);
+        msg.setSubject(subject);
+        msg.setText(body);
+        msg.setFrom("dsbanaenar.com");
+        mailSender.send(msg);
 
-        for (Contact cont: contacts){
-            email.addRecipient(cont.getFirstName() + cont.getLastname(), cont.getEmail());
-        }
+        return "Mail sent succesfully";
 
-        email.setSubject("Subject:");
-        email.setHtml("<p>Mensaje de prueba</p>");
-
-        ms.setToken(Dotenv.load().get("API_KEY"));
-
-        try {    
-        MailerSendResponse response = ms.emails().send(email);
-        System.out.println(response.messageId);
-        } catch (MailerSendException e) {
-            e.printStackTrace();
-        }
     }
+
 }
