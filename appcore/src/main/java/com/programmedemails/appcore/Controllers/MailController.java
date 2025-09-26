@@ -28,7 +28,7 @@ public class MailController {
     @PostMapping("/send")
     public ResponseEntity<?> sendEmail(@RequestBody EmailRequest request) {
         try {
-            return ResponseEntity.ok(mailService.sendEmail(request.getTo(),request.getSubject(),request.getBody()));
+            return ResponseEntity.ok(mailService.sendEmailToOne(request.getTo(),request.getSubject(),request.getBody()));
         } catch (MailException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Collections.singletonMap("message: ",e.getMessage()));
         }

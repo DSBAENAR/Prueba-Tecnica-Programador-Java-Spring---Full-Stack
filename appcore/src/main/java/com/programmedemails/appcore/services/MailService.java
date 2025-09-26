@@ -14,7 +14,7 @@ public class MailService {
         this.mailSender = mailSender;
     }
 
-    public String sendEmail(String to, String subject, String body) throws MailException{
+    public String sendEmailToOne(String to, String subject, String body) throws MailException{
 
             SimpleMailMessage msg = new SimpleMailMessage();
             msg.setTo(to);
